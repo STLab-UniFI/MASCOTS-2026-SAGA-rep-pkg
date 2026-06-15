@@ -1,0 +1,110 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: topology
+data:
+  topology.json: |
+##CONFIGMAP##
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: experiments-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.35.4
+    app.quarkus.io/commit-id: 7cb164b665819bab57f2379735c2f293e746db90
+    app.quarkus.io/vcs-uri: https://github.com/TommasoBotarelli/SagaOrchestration.git
+    app.quarkus.io/build-timestamp: 2026-05-25 - 13:13:59 +0000
+  labels:
+    app.kubernetes.io/name: saga-orchestrator
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/managed-by: quarkus
+  name: saga-orchestrator
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: saga-orchestrator
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.35.4
+    app.quarkus.io/commit-id: 7cb164b665819bab57f2379735c2f293e746db90
+    app.quarkus.io/vcs-uri: https://github.com/TommasoBotarelli/SagaOrchestration.git
+    app.quarkus.io/build-timestamp: 2026-05-25 - 13:13:59 +0000
+  labels:
+    app.kubernetes.io/name: saga-orchestrator
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/managed-by: quarkus
+  name: saga-orchestrator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: saga-orchestrator
+      app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/quarkus-version: 3.35.4
+        app.quarkus.io/commit-id: 7cb164b665819bab57f2379735c2f293e746db90
+        app.quarkus.io/vcs-uri: https://github.com/TommasoBotarelli/SagaOrchestration.git
+        app.quarkus.io/build-timestamp: 2026-05-25 - 13:13:59 +0000
+      labels:
+        app.kubernetes.io/managed-by: quarkus
+        app.kubernetes.io/name: saga-orchestrator
+        app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    spec:
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: TOPOLOGY_FILE
+              value: /config/topology.json
+            - name: EXPERIMENT_ID
+              value: /EXPERIMENT_ID/
+          image: docker.io/stlab/saga-orchestrator:latest
+          imagePullPolicy: Never
+          name: saga-orchestrator
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: app-config-vol
+              readOnly: false
+            - mountPath: /experiments
+              name: experiments-data-vol
+              readOnly: false
+      terminationGracePeriodSeconds: 10
+      volumes:
+        - configMap:
+            defaultMode: 384
+            name: topology
+            optional: false
+          name: app-config-vol
+        - name: experiments-data-vol
+          persistentVolumeClaim:
+            claimName: experiments-pvc
+            readOnly: false

@@ -1,0 +1,90 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: CONFIG_NAME
+data:
+  config.json: |
+##CONFIGMAP##
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.35.4
+    app.quarkus.io/commit-id: 050a3323ed797bf76345b6ffffbb69733bffb8be
+    app.quarkus.io/vcs-uri: https://github.com/TommasoBotarelli/SagaOrchestration.git
+    app.quarkus.io/build-timestamp: 2026-05-25 - 13:39:58 +0000
+  labels:
+    app.kubernetes.io/name: SERVICE-NAME
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/managed-by: quarkus
+  name: SERVICE-NAME
+spec:
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app.kubernetes.io/name: SERVICE-NAME
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.quarkus.io/quarkus-version: 3.35.4
+    app.quarkus.io/commit-id: 050a3323ed797bf76345b6ffffbb69733bffb8be
+    app.quarkus.io/vcs-uri: https://github.com/TommasoBotarelli/SagaOrchestration.git
+    app.quarkus.io/build-timestamp: 2026-05-25 - 13:39:58 +0000
+  labels:
+    app.kubernetes.io/name: SERVICE-NAME
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/managed-by: quarkus
+  name: SERVICE-NAME
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/version: 1.0.0-SNAPSHOT
+      app.kubernetes.io/name: SERVICE-NAME
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/quarkus-version: 3.35.4
+        app.quarkus.io/commit-id: 050a3323ed797bf76345b6ffffbb69733bffb8be
+        app.quarkus.io/vcs-uri: https://github.com/TommasoBotarelli/SagaOrchestration.git
+        app.quarkus.io/build-timestamp: 2026-05-25 - 13:39:58 +0000
+      labels:
+        app.kubernetes.io/managed-by: quarkus
+        app.kubernetes.io/version: 1.0.0-SNAPSHOT
+        app.kubernetes.io/name: SERVICE-NAME
+    spec:
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: CONFIG_FILE_PATH
+              value: /config/config.json
+          image: docker.io/stlab/service-template:latest
+          imagePullPolicy: Never
+          name: SERVICE-NAME
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /config
+              name: app-config-vol
+              readOnly: false
+      terminationGracePeriodSeconds: 10
+      volumes:
+        - configMap:
+            defaultMode: 384
+            name: CONFIG_NAME
+            optional: false
+          name: app-config-vol
