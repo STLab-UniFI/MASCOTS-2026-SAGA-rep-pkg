@@ -154,23 +154,4 @@ public class MascotsYamlGenerator {
             throw new RuntimeException("Failed to initialize and clean output directory: " + outputPath, e);
         }
     }
-
-    public static void main(String[] args) throws IOException {
-        SimpleTask s1 = SagaTask.simple("s1", new VariableDeterministicTime(5000.), 1.0);
-        SimpleTask s2 = SagaTask.simple("s2", new VariableDeterministicTime(10000.), 0.8);
-        SimpleTask s3 = SagaTask.simple("s3", new VariableDeterministicTime(30.), 0.1);
-        SimpleTask s4 = SagaTask.simple("s4", new VariableDeterministicTime(30.), 0.1);
-        SimpleTask s5 = SagaTask.simple("s5", new VariableDeterministicTime(30.), 0.1);
-        SimpleTask s6 = SagaTask.simple("s6", new VariableDeterministicTime(30.), 0.1);
-
-        CompositeTask seq1 = SagaTask.seq("seq1", s1, s2);
-        CompositeTask seq2 = SagaTask.seq("seq2", s3, s4);
-        CompositeTask andNested = SagaTask.and("nestedAnd", seq1, seq2);
-        CompositeTask xor = SagaTask.xor("xor", List.of(s5, s6), List.of(0.4, 0.6));
-        
-        
-        CompositeTask root = SagaTask.and("and", s1, s2);
-
-        MascotsYamlGenerator.generateYamlFiles(root, "./test-and");
-    }
 }

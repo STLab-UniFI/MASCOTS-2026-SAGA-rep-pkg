@@ -122,9 +122,8 @@ public class MascotsExperimentation {
     }
 
     public static void main(String[] args) throws Exception {
-        String jsonFolder = "/home/tommaso/SAGA/SAGAConsistencyOpt/tranche_00/";
-        String outputFolder = "/home/tommaso/MASCOTS26/experimentation/analysis_fixed";
-        //String outputFolder = "/home/tommaso/SAGA/SAGAConsistencyOpt/test_result/";
+        String jsonFolder = "./jsonTopologies";
+        String outputFolder = "./analysis-results";
 
         // Clean the outputFolder
         try {
@@ -176,7 +175,7 @@ public class MascotsExperimentation {
                     // 1. Load topology
                     SagaTask root = experimentation.loadTopology(file.getAbsolutePath());
     
-                    // 2. Generate stpn and reward
+                    // 2. Generate stpn and reward if needed
                     //experimentation.saveStpnAndReward(root, targetSubFolder.toString());
                     
                     // 3. Generate Yaml files
