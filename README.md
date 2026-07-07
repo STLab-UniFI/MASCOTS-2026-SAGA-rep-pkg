@@ -38,10 +38,17 @@ Requirements
 
 ## Setup
 
-To build the java project of the calculus use the installation script
+Build the java project using the script
 
 ```bash
 ./install.sh
+```
+
+Then extract the Docker images and load them in docker:
+
+```bash
+docker load -i images/saga-orchestrator.tar
+docker load -i images/service-template.tar
 ```
 
 ## Experimentation
