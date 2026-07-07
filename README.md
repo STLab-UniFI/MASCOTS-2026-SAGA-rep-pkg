@@ -25,4 +25,4 @@ This folder contains the code for:
 
 Contains the docker images useful for evaluating empirically the workflow in a minikube cluster.
 - *saga-orchestrator.tar*, orchestrates the requests between the microservices
-- *service-template.tar*, template for a microservice. It exposes apis for request in forward, backward and failure processing. It is used from `yaml` files as image to process the request.
+- *service-template.tar*, template for a microservice. It exposes apis for request in forward, backward and failure processing. It is used as image for Kubernetes deployment for empirical evaluation.
