@@ -125,10 +125,9 @@ public class MascotsSimpleRefactoringExperimentation {
     }
 
     public static void main(String[] args) throws Exception {
-        String jsonFolder = "/home/tommaso/SAGA/SAGAConsistencyOpt/tranche_00/";
-        String baseFolderAnalysis = "/home/tommaso/MASCOTS26/experimentation/analysis_fixed";
-        //String outputFolder = "/home/tommaso/MASCOTS26/experimentation/total_experimentation_tranche_00";
-        String outputFolder = "/home/tommaso/MASCOTS26/experimentation/rearrangement_analysis/";
+        String jsonFolder = "./jsonTopologies";
+        String baseFolderAnalysis = "./analysis-results";
+        String outputFolder = "./refactoring-results";
 
         // Clean the outputFolder
         try {
@@ -197,21 +196,21 @@ public class MascotsSimpleRefactoringExperimentation {
                 Analysis failLastAnalysis = failLast.analyzeTimeToConsistency();
                 failLastAnalysis.exportToCSV(targetCsvSubFolder.getAbsolutePath() + "/fail-last.csv");
                 ranker.addTask(failLast, failLastAnalysis.getValues(), failLastAnalysis.getTimeStep());
-                //experimentation.generateYamlFiles(failLast, targetYamlSubFolder.getAbsolutePath() + "/fail-last");
+                experimentation.generateYamlFiles(failLast, targetYamlSubFolder.getAbsolutePath() + "/fail-last");
 
                 SagaTask sequential = SimpleTopologyRefactor.sequential(root.clone());
                 refactoringMap.put(sequential, "sequential");
                 Analysis seqAnalisys = sequential.analyzeTimeToConsistency();
                 seqAnalisys.exportToCSV(targetCsvSubFolder.getAbsolutePath() + "/sequential.csv");
                 ranker.addTask(sequential, seqAnalisys.getValues(), seqAnalisys.getTimeStep());
-                //experimentation.generateYamlFiles(sequential, targetYamlSubFolder.getAbsolutePath() + "/sequential");
+                experimentation.generateYamlFiles(sequential, targetYamlSubFolder.getAbsolutePath() + "/sequential");
 
                 SagaTask failFirst = SimpleTopologyRefactor.sequentialFailFirst(root.clone());
                 refactoringMap.put(failFirst, "fail-first");
                 Analysis failFirstAnalisys = failFirst.analyzeTimeToConsistency();
                 failFirstAnalisys.exportToCSV(targetCsvSubFolder.getAbsolutePath() + "/fail-first.csv");
                 ranker.addTask(failFirst, failFirstAnalisys.getValues(), failFirstAnalisys.getTimeStep());
-                //experimentation.generateYamlFiles(failFirst, targetYamlSubFolder.getAbsolutePath() + "/fail-first");
+                experimentation.generateYamlFiles(failFirst, targetYamlSubFolder.getAbsolutePath() + "/fail-first");
 
                 Map<SagaTask, Double> ranking = ranker.getRanking();
                 saveRanking(refactoringMap, ranking, targetCsvSubFolder.getAbsolutePath());

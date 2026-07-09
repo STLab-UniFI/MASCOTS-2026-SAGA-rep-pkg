@@ -125,10 +125,9 @@ public class MascotsRefactoringExperimentation {
     }
 
     public static void main(String[] args) throws Exception {
-        String jsonFolder = "/home/tommaso/SAGA/SAGAConsistencyOpt/tranche_00/";
-        String baseFolderAnalysis = "/home/tommaso/MASCOTS26/experimentation/analysis_fixed";
-        //String outputFolder = "/home/tommaso/MASCOTS26/experimentation/total_experimentation_tranche_00";
-        String outputFolder = "/home/tommaso/SAGA/SAGAConsistencyOpt/tranche_00_results_rearrangement/";
+        String jsonFolder = "jsonFolder";
+        String baseFolderAnalysis = "baseFolderAnalysis";
+        String outputFolder = "outputFolder";
 
         // Clean the outputFolder
         try {
