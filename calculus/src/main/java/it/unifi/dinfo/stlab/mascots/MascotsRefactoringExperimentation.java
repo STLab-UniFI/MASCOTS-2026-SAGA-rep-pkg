@@ -125,9 +125,9 @@ public class MascotsRefactoringExperimentation {
     }
 
     public static void main(String[] args) throws Exception {
-        String jsonFolder = "jsonFolder";
-        String baseFolderAnalysis = "baseFolderAnalysis";
-        String outputFolder = "outputFolder";
+        String jsonFolder = "../alibaba_workflows/";
+        String outputFolder = "../refactoring-results/";
+        String baseFolderAnalysis = "../alibaba_workflows/";
 
         // Clean the outputFolder
         try {

@@ -122,8 +122,8 @@ public class MascotsExperimentation {
     }
 
     public static void main(String[] args) throws Exception {
-        String jsonFolder = "./jsonTopologies";
-        String outputFolder = "./analysis-results";
+        String jsonFolder = "../alibaba_workflows/";
+        String outputFolder = "../analysis-results/";
 
         // Clean the outputFolder
         try {
@@ -188,7 +188,7 @@ public class MascotsExperimentation {
                     experimentation.saveProbabilities(allScenarios, targetSubFolder.toString());
     
                     // 6. Save number of iterations
-                    //experimentation.saveNumberOfIterationsNeeded(allScenarios, targetSubFolder.toString());
+                    experimentation.saveNumberOfIterationsNeeded(allScenarios, targetSubFolder.toString());
                         
                     System.out.println("Successfully processed: " + fileName);
                     System.out.println("----------------------------------------");
