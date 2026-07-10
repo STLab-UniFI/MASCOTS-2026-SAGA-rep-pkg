@@ -1,0 +1,510 @@
+{
+  "id": "6240dde6",
+  "type": "Entering",
+  "tier": 1,
+  "execution_time_distribution": [
+    {
+      "type": "Hyper-exponential",
+      "params": {
+        "p1": 0.7335278465221393,
+        "lambda1": 0.42446215224945066,
+        "p2": 0.2664721534778607,
+        "lambda2": 0.15419638711199887
+      }
+    },
+    {
+      "type": "Deterministic",
+      "params": {
+        "mean": 1.0
+      }
+    },
+    {
+      "type": "Deterministic",
+      "params": {
+        "mean": 1.0
+      }
+    }
+  ],
+  "children": [
+    {
+      "id": "49eb23c2",
+      "type": "Normal",
+      "tier": 2,
+      "execution_time_distribution": [
+        {
+          "type": "Deterministic",
+          "params": {
+            "mean": 1.0
+          }
+        },
+        {
+          "type": "Generalized-Erlang",
+          "params": {
+            "k": 27,
+            "lambda1": 3.872967753256509,
+            "lambda2": 2.9592471153384574
+          }
+        },
+        {
+          "type": "Hyper-exponential",
+          "params": {
+            "p1": 0.6944208279888902,
+            "lambda1": 2.426610251933576,
+            "p2": 0.30557917201110985,
+            "lambda2": 1.0678273486223777
+          }
+        }
+      ],
+      "children": [
+        {
+          "id": "fceff830",
+          "type": "Normal",
+          "tier": 3,
+          "execution_time_distribution": [
+            {
+              "type": "Generalized-Erlang",
+              "params": {
+                "k": 5,
+                "lambda1": 4.766899997104479,
+                "lambda2": 2.2306784342945987
+              }
+            },
+            {
+              "type": "Generalized-Erlang",
+              "params": {
+                "k": 10,
+                "lambda1": 0.9918179897179292,
+                "lambda2": 0.6387109450755967
+              }
+            },
+            {
+              "type": "Hypo-exponential",
+              "params": {
+                "lambda1": 0.6107678246759768,
+                "lambda2": 1.447509749250205
+              }
+            }
+          ],
+          "children": [
+            {
+              "id": "a5925aad",
+              "type": "Memcached",
+              "tier": 4,
+              "execution_time_distribution": [
+                {
+                  "type": "Hypo-exponential",
+                  "params": {
+                    "lambda1": 1.7033132149383126,
+                    "lambda2": 13.401423121824596
+                  }
+                },
+                {
+                  "type": "Hyper-exponential",
+                  "params": {
+                    "p1": 0.7290209044628146,
+                    "lambda1": 3.617900747495434,
+                    "p2": 0.27097909553718535,
+                    "lambda2": 1.344783759008965
+                  }
+                },
+                {
+                  "type": "Hypo-exponential",
+                  "params": {
+                    "lambda1": 1.9052497196262743,
+                    "lambda2": 118.09469753027847
+                  }
+                }
+              ],
+              "children": []
+            },
+            {
+              "id": "64bbd669",
+              "type": "Normal",
+              "tier": 4,
+              "execution_time_distribution": [
+                {
+                  "type": "Generalized-Erlang",
+                  "params": {
+                    "k": 9,
+                    "lambda1": 6.920651470262984,
+                    "lambda2": 4.081651039685747
+                  }
+                },
+                {
+                  "type": "Generalized-Erlang",
+                  "params": {
+                    "k": 7,
+                    "lambda1": 4.731989058874179,
+                    "lambda2": 2.165050206645235
+                  }
+                },
+                {
+                  "type": "Deterministic",
+                  "params": {
+                    "mean": 1.0
+                  }
+                }
+              ],
+              "children": [
+                {
+                  "id": "fcbbfa42",
+                  "type": "Memcached",
+                  "tier": 5,
+                  "execution_time_distribution": [
+                    {
+                      "type": "Hyper-exponential",
+                      "params": {
+                        "p1": 0.6083742781744617,
+                        "lambda1": 2.5534581811654005,
+                        "p2": 0.39162572182553834,
+                        "lambda2": 1.643724824052241
+                      }
+                    },
+                    {
+                      "type": "Hyper-exponential",
+                      "params": {
+                        "p1": 0.7408698098870538,
+                        "lambda1": 3.8174412530548936,
+                        "p2": 0.25913019011294625,
+                        "lambda2": 1.3352066239545175
+                      }
+                    },
+                    {
+                      "type": "Generalized-Erlang",
+                      "params": {
+                        "k": 2,
+                        "lambda1": 6.711668964667756,
+                        "lambda2": 2.1082593676063683
+                      }
+                    }
+                  ],
+                  "children": []
+                },
+                {
+                  "id": "df21a588",
+                  "type": "Normal",
+                  "tier": 5,
+                  "execution_time_distribution": [
+                    {
+                      "type": "Generalized-Erlang",
+                      "params": {
+                        "k": 7,
+                        "lambda1": 5.06990893980095,
+                        "lambda2": 2.25413597944671
+                      }
+                    },
+                    {
+                      "type": "Hypo-exponential",
+                      "params": {
+                        "lambda1": 0.1894827780049993,
+                        "lambda2": 0.30286639409427407
+                      }
+                    },
+                    {
+                      "type": "Generalized-Erlang",
+                      "params": {
+                        "k": 4,
+                        "lambda1": 0.582081284241754,
+                        "lambda2": 0.26631350606495025
+                      }
+                    }
+                  ],
+                  "children": [
+                    {
+                      "id": "445d99f6",
+                      "type": "Normal",
+                      "tier": 6,
+                      "execution_time_distribution": [
+                        {
+                          "type": "Generalized-Erlang",
+                          "params": {
+                            "k": 28,
+                            "lambda1": 9.251275305818847,
+                            "lambda2": 4.728455713721779
+                          }
+                        },
+                        {
+                          "type": "Hypo-exponential",
+                          "params": {
+                            "lambda1": 0.2538011895955287,
+                            "lambda2": 2.10660965480634
+                          }
+                        },
+                        {
+                          "type": "Generalized-Erlang",
+                          "params": {
+                            "k": 8,
+                            "lambda1": 4.250913979056749,
+                            "lambda2": 2.2154035400712506
+                          }
+                        }
+                      ],
+                      "children": [
+                        {
+                          "id": "7344f997",
+                          "type": "Memcached",
+                          "tier": 7,
+                          "execution_time_distribution": [
+                            {
+                              "type": "Hypo-exponential",
+                              "params": {
+                                "lambda1": 1.6290556388618758,
+                                "lambda2": 5.79717359364852
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            }
+                          ],
+                          "children": []
+                        },
+                        {
+                          "id": "1e7f6d54",
+                          "type": "Blackhole",
+                          "tier": 7,
+                          "execution_time_distribution": [
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 3.0
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 2.0
+                              }
+                            }
+                          ],
+                          "children": []
+                        },
+                        {
+                          "id": "b88057b7",
+                          "type": "Memcached",
+                          "tier": 7,
+                          "execution_time_distribution": [
+                            {
+                              "type": "Hypo-exponential",
+                              "params": {
+                                "lambda1": 1.7544518580900708,
+                                "lambda2": 5.471397989910985
+                              }
+                            },
+                            {
+                              "type": "Hyper-exponential",
+                              "params": {
+                                "p1": 0.6878191969820795,
+                                "lambda1": 3.2032722097707818,
+                                "p2": 0.3121808030179205,
+                                "lambda2": 1.4538705740097067
+                              }
+                            },
+                            {
+                              "type": "Hypo-exponential",
+                              "params": {
+                                "lambda1": 2.0276968242532973,
+                                "lambda2": 8.058441095813805
+                              }
+                            }
+                          ],
+                          "children": []
+                        },
+                        {
+                          "id": "f58614cc",
+                          "type": "Memcached",
+                          "tier": 7,
+                          "execution_time_distribution": [
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            },
+                            {
+                              "type": "Hyper-exponential",
+                              "params": {
+                                "p1": 0.7139007156008697,
+                                "lambda1": 3.3693174472834264,
+                                "p2": 0.28609928439913035,
+                                "lambda2": 1.3502708283041236
+                              }
+                            }
+                          ],
+                          "children": []
+                        },
+                        {
+                          "id": "09406087",
+                          "type": "Database",
+                          "tier": 7,
+                          "execution_time_distribution": [
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 2.0
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            },
+                            {
+                              "type": "Deterministic",
+                              "params": {
+                                "mean": 1.0
+                              }
+                            }
+                          ],
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "id": "fbb7cde4",
+                      "type": "Memcached",
+                      "tier": 6,
+                      "execution_time_distribution": [
+                        {
+                          "type": "Exponential",
+                          "params": {
+                            "rate": 1.7643312075117876
+                          }
+                        },
+                        {
+                          "type": "Deterministic",
+                          "params": {
+                            "mean": 1.0
+                          }
+                        },
+                        {
+                          "type": "Deterministic",
+                          "params": {
+                            "mean": 1.0
+                          }
+                        }
+                      ],
+                      "children": []
+                    },
+                    {
+                      "id": "2ce41c01",
+                      "type": "Memcached",
+                      "tier": 6,
+                      "execution_time_distribution": [
+                        {
+                          "type": "Hyper-exponential",
+                          "params": {
+                            "p1": 0.6876564186092518,
+                            "lambda1": 3.003972790165473,
+                            "p2": 0.31234358139074825,
+                            "lambda2": 1.3644482830222784
+                          }
+                        },
+                        {
+                          "type": "Generalized-Erlang",
+                          "params": {
+                            "k": 2,
+                            "lambda1": 5.947644682149018,
+                            "lambda2": 2.1553304541571996
+                          }
+                        },
+                        {
+                          "type": "Hypo-exponential",
+                          "params": {
+                            "lambda1": 1.961808687605777,
+                            "lambda2": 18.333538708699365
+                          }
+                        }
+                      ],
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "3e2f34b7",
+          "type": "Blackhole",
+          "tier": 3,
+          "execution_time_distribution": [
+            {
+              "type": "Hypo-exponential",
+              "params": {
+                "lambda1": 2.0471903161419682,
+                "lambda2": 5.927915503336901
+              }
+            },
+            {
+              "type": "Deterministic",
+              "params": {
+                "mean": 2.0
+              }
+            },
+            {
+              "type": "Deterministic",
+              "params": {
+                "mean": 1.0
+              }
+            }
+          ],
+          "children": []
+        },
+        {
+          "id": "1f0cf6c2",
+          "type": "Memcached",
+          "tier": 3,
+          "execution_time_distribution": [
+            {
+              "type": "Hyper-exponential",
+              "params": {
+                "p1": 0.6983074293054958,
+                "lambda1": 3.3146326846997884,
+                "p2": 0.30169257069450417,
+                "lambda2": 1.4320341064531688
+              }
+            },
+            {
+              "type": "Generalized-Erlang",
+              "params": {
+                "k": 2,
+                "lambda1": 6.009045492765805,
+                "lambda2": 2.1477681882635005
+              }
+            },
+            {
+              "type": "Hypo-exponential",
+              "params": {
+                "lambda1": 1.9730967519456457,
+                "lambda2": 14.417911917168492
+              }
+            }
+          ],
+          "children": []
+        }
+      ]
+    }
+  ]
+}
