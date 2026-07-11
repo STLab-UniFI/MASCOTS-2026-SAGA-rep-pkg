@@ -11,6 +11,7 @@ submitted to **MASCOTS 2026**.
 ├── images/
 │   ├── saga-orchestrator.tar    # Orchestrator image
 │   └── service-template.tar     # Service template image
+├── alibaba_workflows/           # Pre calculated set of alibaba workflows in the form of JSON file
 └── README.md                    # This file
 ```
 
@@ -58,6 +59,8 @@ After building the project run the experimentation script:
 ```bash
 ./run_analysis.sh
 ```
+
+Note: this script will run all the topologies, to only execute in a subset of it move away from the folder `alibaba_workflows/`.
 
 This code will process all the topologies of the article and will store the results in:
 - `analysis-results` for the analysis of the Time-To-Consistency of the workflows
