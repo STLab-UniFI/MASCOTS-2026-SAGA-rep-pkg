@@ -31,10 +31,10 @@ Contains the docker images useful for evaluating empirically the workflow in a m
 To load, analyze and generate yaml file the Java program uses Apache Maven for dependency management and build automation.
 
 Requirements
-- Java Development Kit (JDK): 24
-- Build Tool: Apache Maven 3.9+
-- Docker 20.10 or higher
-- Minikube 1.37.0 or higher
+- Java Development Kit (JDK): 24.0.1 or higher
+- Build Tool: Apache Maven 3.9.11 or higher
+- Docker v29.1.5 or higher
+- Minikube v1.38.0
 
 ## Setup
 
