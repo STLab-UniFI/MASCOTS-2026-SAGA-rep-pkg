@@ -36,6 +36,7 @@ Requirements
 - Build Tool: Apache Maven 3.9.11 or higher
 - Docker v29.1.5 or higher
 - Minikube v1.38.0
+- k6 v1.0.0
 
 ## Setup
 
