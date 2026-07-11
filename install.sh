@@ -1,7 +1,7 @@
 cd calculus/
 
 mvn install:install-file \
-   -Dfile=libs/eulero-1.0.0-SNAPSHOT-jar-with-dependencies.jar \
+   -Dfile=libs/eulero-1.0.0-SNAPSHOT.jar \
    -DgroupId=org.oris-tool \
    -DartifactId=eulero \
    -Dversion=1.0.0-SNAPSHOT \
