@@ -752,14 +752,7 @@ public abstract class SagaTask implements Cloneable {
         builder.timeBound(BigDecimal.valueOf(maxTimeLimit));
         builder.timeStep(timeStep);
         builder.markingFilter(RewardRate.nonZero(0.0, TransientSolution.rewardRates(reward)));
-        //builder.greedyPolicy(new BigDecimal(maxTimeLimit), new BigDecimal(Constants.ERROR_REGENERATIVE_ANALYSIS_ALLOWED));
-        //PrintStream ps = System.out;
-        //builder.logger(new PrintStreamLogger(ps));
         RegTransient analysis = builder.build();
-        //System.out.println("Start transient");
-        //double[] transientSolution = this.getTransientFromReward(petriNet, marking, reward, maxTimeLimit);
-        //System.out.println("Finished transient");
-        //this.checkProbabilitySumTransient(transientSolution);
 
         System.out.println("Start transient analysis");
         TransientSolution<DeterministicEnablingState, Marking> result = analysis.compute(petriNet, marking);
@@ -771,17 +764,13 @@ public abstract class SagaTask implements Cloneable {
 
         this.checkProbabilitySum(solution);
 
-        rewardResult.writeCSV("solution.csv", 4);
+        //rewardResult.writeCSV("solution.csv", 4);
 
         int i = 0;
         for (FailCombination failCombination : failCombinations) {
             probabilityMap.put(failCombination, solution[solution.length-1][0][i]);
             i++;
         }
-        //for (FailCombination failCombination : failCombinations) {
-        //    probabilityMap.put(failCombination, transientSolution[i]);
-        //    i++;
-        //}
 
         return probabilityMap;
     }
@@ -871,93 +860,6 @@ public abstract class SagaTask implements Cloneable {
      * @return
      */
     public abstract boolean containsFailCombination(FailCombination combination);
-
-
-    public static void main(String[] args) {
-        // Example usage:
-        //SimpleTask s1 = SagaTask.simple("s1", new VariableDeterministicTime(10.), 0.1);
-        //SimpleTask s2 = SagaTask.simple("s2", new VariableDeterministicTime(20.), 0.8);
-        //SimpleTask s3 = SagaTask.simple("s3", new VariableDeterministicTime(30.), 0.1);
-
-        //CompositeTask seq = SagaTask.seq("seq", s1, s2);
-        //CompositeTask root = SagaTask.and("and", seq, s3);
-
-        SimpleTask s2 = SagaTask.simple("s2", new VariableDeterministicTime(2.),new VariableDeterministicTime(0.5),new VariableDeterministicTime(0.5), 0.2);
-//        CompositeTask and = SagaTask.and("seq", s, s2);
-        Analysis analysis = s2.analyzeTimeToConsistency();
-        System.out.println("analyzeTimeToConsistency() executed: " + analysis.getValues());
-//        and.analyzeTimeToConsistency();
-//        seq.analyzeTimeToConsistency();
-
-//        SimpleTask s1 = SagaTask.simple("s1", new VariableGeneralizedErlangTime(5, new BigDecimal(1), new BigDecimal(1)), 0.2);
-//        SimpleTask s2 = SagaTask.simple("s2", new VariableGeneralizedErlangTime(5, new BigDecimal(1), new BigDecimal(1)), 0.2);
-//        SimpleTask s3 = SagaTask.simple("s3", new VariableDeterministicTime(30.), 0.1);
-//        SimpleTask s4 = SagaTask.simple("s4", new VariableDeterministicTime(30.), 0.1);
-//        SimpleTask s5 = SagaTask.simple("s5", new VariableDeterministicTime(30.), 0.1);
-//        SimpleTask s6 = SagaTask.simple("s6", new VariableDeterministicTime(30.), 0.1);
-
-//        CompositeTask seq1 = SagaTask.seq("seq1", s1, s2);
-//        CompositeTask seq2 = SagaTask.seq("seq2", s3, s4);
-//        CompositeTask andNested = SagaTask.and("nestedAnd", seq1, seq2);
-//        CompositeTask xor = SagaTask.xor("xor", List.of(s5, s6), List.of(0.4, 0.6));
-//        CompositeTask topAnd = SagaTask.and("and", andNested, xor);
-//
-//        CompositeTask rootAnd = SagaTask.and("and", s1, s2);
-//
-//        SimpleTask s7 = SagaTask.simple("s7", new VariableDeterministicTime(30.), 0.1);
-//        SimpleTask s8 = SagaTask.simple("s8", new VariableDeterministicTime(30.), 0.1);
-//        CompositeTask topSeq = SagaTask.seq("topSeq", s7, s8);
-//        CompositeTask root = SagaTask.seq("root", topSeq, topAnd);
-//
-//        root.analyzeTimeToConsistency();
-//
-//        FailCombination combination = new FailCombination(s2, List.of(s4, s5), root.getStpnModel());
-//
-//        Activity untilFailure = root.composeWorkflowUntilFailure(combination);
-//        Activity fromFailure = root.composeWorkflowFromFailure(combination);
-//
-//        System.out.println("worflow until failure combinanation: " + combination );
-//        System.out.println(untilFailure);
-//
-//        System.out.println("worflow from failure combinanation: " + combination );
-//        System.out.println(fromFailure);
-
-        //root.exportTopologyJson("topology.json");
-        //root.exportSimpleTasksToJson("./");
-
-        /*
-        Analysis cdfAnalysis = root.analyzeTimeToConsistency();
-
-        double[] cdfValues = cdfAnalysis.getValues();
-
-        for (int i = 0; i < cdfValues.length; i++) {
-            //System.out.printf("Time: %.2f s, CDF: %.4f%n", i * cdfAnalysis.getTimeStep(), cdfValues[i]);
-        }
-        */
-
-        //SagaVisualizer.plotTheoreticalCDFs(root.getAllScenarioResults());
-
-//        ForceDirectAlgorithm.repulsiveConstant = 10.0;
-//        ForceDirectAlgorithm.springConstant = 1.0;
-//        ForceDirectAlgorithm.epsilon = 0.001;
-//        ForceDirectAlgorithm.idealArcLength = 300;
-//        ForceDirectAlgorithm.maxIterations = 1_000_000;
-//
-//        XpnGenerator generator = new XpnGenerator(rootAnd.getStpnModel());
-//        generator.saveToFile("simple-and");
-
-        //List<FailCombination> failCombinations = rootAnd.getFailableCombinations();
-
-        //for (FailCombination failCombination : failCombinations) {
-        //    System.out.println(failCombination);
-        //    System.out.println("workflow: " + root.composeWorkflow(failCombination) );
-        //}
-//        System.out.println(rootAnd.getAllRewardCombinations());
-
-//        List<ScenarioInfo> allScenarios = rootAnd.calculateAllScenarioAnalysis();
-        //for (ScenarioInfo scenario : allScenarios)
-        //    System.out.println(scenario);
-    }
 
     /**
      * Maps an {@link AnalysisType} to the corresponding Eulero {@link Activity}

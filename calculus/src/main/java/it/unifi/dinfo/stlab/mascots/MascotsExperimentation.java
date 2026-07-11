@@ -188,7 +188,7 @@ public class MascotsExperimentation {
                     experimentation.saveProbabilities(allScenarios, targetSubFolder.toString());
     
                     // 6. Save number of iterations
-                    experimentation.saveNumberOfIterationsNeeded(allScenarios, targetSubFolder.toString());
+                    //experimentation.saveNumberOfIterationsNeeded(allScenarios, targetSubFolder.toString());
                         
                     System.out.println("Successfully processed: " + fileName);
                     System.out.println("----------------------------------------");

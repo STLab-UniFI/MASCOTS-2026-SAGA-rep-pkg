@@ -19,11 +19,7 @@ import java.util.stream.Stream;
 
 public class MascotsSimpleRefactoringExperimentation {
     TopologyLoader topologyLoader;
-
-    // todo complete the strategy list
-    private static final List<EvaluatorStrategy> STRATEGIES = List.of(new TimeToConsistencyEvaluator(), new FailFastEvaluator(), new CompensateFastEvaluator(), new ConvergeFastEvaluator());
-
-
+    
     private MascotsSimpleRefactoringExperimentation(double probForkJoin, double minProbabilityToFail, double maxProbabilityToFail, long seed) {
         this.topologyLoader = new TopologyLoader(probForkJoin, minProbabilityToFail, maxProbabilityToFail, seed);
     }
@@ -127,7 +123,7 @@ public class MascotsSimpleRefactoringExperimentation {
     public static void main(String[] args) throws Exception {
         String jsonFolder = "../alibaba_workflows/";
         String outputFolder = "../refactoring-results/";
-        String baseFolderAnalysis = "../alibaba_workflows/";
+        String baseFolderAnalysis = "../analysis-results/";
 
         // Clean the outputFolder
         try {
